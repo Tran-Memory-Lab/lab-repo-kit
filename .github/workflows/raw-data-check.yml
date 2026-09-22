@@ -1,0 +1,24 @@
+# Reusable workflow. Call it at an immutable tag and pass the same tag as kit-ref:
+#   uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/raw-data-check.yml@v0.1.0
+#   with: { kit-ref: v0.1.0 }
+name: raw-data-check
+on:
+  workflow_call:
+    inputs:
+      kit-ref:
+        description: lab-repo-kit tag; must equal the tag in the uses line
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "git+https://github.com/Tran-Memory-Lab/lab-repo-kit@${{ inputs.kit-ref }}"
+      - name: Scan every tracked file
+        run: git ls-files -z | xargs -0 --no-run-if-empty lab-raw-data-guard

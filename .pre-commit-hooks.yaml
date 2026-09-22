@@ -1,0 +1,6 @@
+- id: lab-raw-data-guard
+  name: Raw participant data guard
+  description: Flags likely raw participant data by path, extension, size, and CSV/TSV headers.
+  entry: lab-raw-data-guard
+  language: python
+  pass_filenames: true

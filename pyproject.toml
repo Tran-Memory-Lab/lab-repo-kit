@@ -1,0 +1,19 @@
+[project]
+name = "lab-repo-kit"
+version = "0.1.0"
+description = "Tran Memory Lab shared validators, raw-data hook, and agent-policy fragments"
+requires-python = ">=3.10"
+
+[project.scripts]
+lab-raw-data-guard = "lab_repo_kit.raw_data_guard:main"
+lab-check-vendored = "lab_repo_kit.check_vendored:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
