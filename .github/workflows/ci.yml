@@ -16,4 +16,4 @@ jobs:
       - run: pip install . pytest
       - run: pytest -q
       - name: Scan this repository
-        run: git ls-files -z | xargs -0 lab-raw-data-guard
+        run: git ls-files -z | xargs -0 lab-raw-data-guard --
