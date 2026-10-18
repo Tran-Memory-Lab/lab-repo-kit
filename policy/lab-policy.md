@@ -16,12 +16,18 @@
 
 - A merged pull request shows review and integration only. It is never physical rig verification
   and never scientific verification.
-- For a headset-required issue (`Rig Verification: Needs Headset Check`), write `Refs #N` in the
-  pull request description, never `Closes`, `Fixes`, or `Resolves`. The issue stays open in
-  `In Review` until a person records rig evidence, sets `Verified on Rig`, and closes it.
-- Code-only issues may use `Closes #N`.
+- Work that only a person can check (in a headset, a browser, on a rig) stays open after merge
+  until that person records the evidence on the issue. Its pull request references the issue
+  without a closing keyword.
 - Never report a scientific result, a data-quality claim, or rig behaviour as verified because
   tests or CI passed.
+
+## Work tracking
+
+- The board, its fields and their options, the issue forms, and the closing-keyword rule are
+  defined per repository in `docs/agents/TRACKING.md`. Read it before filing, moving, or closing
+  an issue. This file does not repeat field names, because they differ between repositories.
+- A repository without `docs/agents/TRACKING.md` names its work authority in `AGENTS.md`.
 
 ## Shared kit
 

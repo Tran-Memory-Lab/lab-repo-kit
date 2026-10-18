@@ -116,7 +116,7 @@ def _extension(path: Path) -> str:
 def _header(path: Path) -> list[str]:
     delimiter = "\t" if path.suffix.lower() == ".tsv" else ","
     try:
-        with path.open(newline="", encoding="utf-8", errors="replace") as fh:
+        with path.open(newline="", encoding="utf-8-sig", errors="replace") as fh:
             row = next(csv.reader(fh, delimiter=delimiter), [])
     except OSError:
         return []
@@ -151,8 +151,8 @@ def check_file(path_str: str) -> list[str]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("files", nargs="*")
+    parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+    parser.add_argument("files", nargs="*", help="paths to check; pass -- before them")
     args = parser.parse_args(argv)
     failed = 0
     for f in args.files:
