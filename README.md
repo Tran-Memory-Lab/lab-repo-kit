@@ -78,6 +78,7 @@ Callers that run the guard directly must put `--` before filenames, for example
 | `lab-check-taxonomy` (`lab_repo_kit.check_taxonomy:main`) | Audits all organization repositories for custom property and topic compliance | Experimental (`0.x`) |
 | `.github/workflows/raw-data-check.yml` | Reusable workflow (`workflow_call`, `kit-ref` input) running `lab-raw-data-guard` in CI | Experimental (`0.x`) |
 | `.github/workflows/kit-drift.yml` | Reusable workflow (`workflow_call`, `kit-ref` input) checking vendored `.lab-repo-kit/` drift | Experimental (`0.x`) |
+| `.github/workflows/python-syntax-check.yml` | Reusable workflow (`workflow_call`) validating Python source files compile without fatal syntax errors | Experimental (`0.x`) |
 | `.github/workflows/taxonomy-audit.yml` | Reusable & scheduled workflow running weekly organization taxonomy audit | Experimental (`0.x`) |
 | `policy/lab-policy.md` | Agent-policy fragment copied into `.lab-repo-kit/lab-policy.md` in consuming repositories | Experimental (`0.x`) |
 
