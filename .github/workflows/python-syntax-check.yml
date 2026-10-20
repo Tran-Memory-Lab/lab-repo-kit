@@ -1,0 +1,40 @@
+# Reusable workflow. Verifies Python source files compile cleanly without fatal syntax errors.
+#   uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/python-syntax-check.yml@main
+name: python-syntax-check
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        description: "Python version to test compilation against"
+        required: false
+        type: string
+        default: "3.12"
+      paths:
+        description: "Path pattern to scan (defaults to current directory)"
+        required: false
+        type: string
+        default: "."
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Check Python compilation syntax
+        run: |
+          echo "Compiling all Python files in ${{ inputs.paths }}..."
+          python -m compileall -q -f ${{ inputs.paths }}
+
+      - name: Check fatal syntax and undefined control-flow (ruff)
+        run: |
+          pip install ruff
+          ruff check --select E9,F63,F7,F82 ${{ inputs.paths }}

@@ -7,6 +7,8 @@ requires-python = ">=3.10"
 [project.scripts]
 lab-raw-data-guard = "lab_repo_kit.raw_data_guard:main"
 lab-check-vendored = "lab_repo_kit.check_vendored:main"
+lab-init-repo = "lab_repo_kit.init_repo:main"
+lab-check-taxonomy = "lab_repo_kit.check_taxonomy:main"
 
 [build-system]
 requires = ["setuptools>=68"]

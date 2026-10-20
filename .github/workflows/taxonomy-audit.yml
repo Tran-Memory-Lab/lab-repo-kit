@@ -1,0 +1,39 @@
+name: taxonomy-audit
+
+on:
+  schedule:
+    - cron: "0 12 * * 1" # Every Monday at 12:00 UTC
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      kit-ref:
+        description: "lab-repo-kit git ref to run audit from"
+        required: false
+        type: string
+        default: "main"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout lab-repo-kit
+        uses: actions/checkout@v4
+        with:
+          repository: Tran-Memory-Lab/lab-repo-kit
+          ref: ${{ inputs.kit-ref || 'main' }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install lab-repo-kit
+        run: pip install .
+
+      - name: Run Taxonomy Compliance Audit
+        env:
+          GH_TOKEN: ${{ secrets.ORG_TAXONOMY_TOKEN || secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+        run: lab-check-taxonomy
