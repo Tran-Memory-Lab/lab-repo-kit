@@ -1,6 +1,6 @@
 # Reusable workflow. Reports drift between .lab-repo-kit/ and the pinned kit; never rewrites.
-#   uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/kit-drift.yml@v0.2.0
-#   with: { kit-ref: v0.2.0 }
+#   uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/kit-drift.yml@v0.3.0
+#   with: { kit-ref: v0.3.0 }
 name: kit-drift
 on:
   workflow_call:

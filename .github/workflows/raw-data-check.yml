@@ -1,6 +1,6 @@
 # Reusable workflow. Call it at an immutable tag and pass the same tag as kit-ref:
-#   uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/raw-data-check.yml@v0.2.0
-#   with: { kit-ref: v0.2.0 }
+#   uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/raw-data-check.yml@v0.3.0
+#   with: { kit-ref: v0.3.0 }
 name: raw-data-check
 on:
   workflow_call:

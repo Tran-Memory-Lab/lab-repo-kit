@@ -2,17 +2,17 @@
 
 Versioned shared tooling for Tran Memory Lab repositories: the raw-data hook, validators,
 reusable CI workflows, and agent-policy text for vendoring. Consuming repositories pin a release
-tag (`v0.2.0`) and update only through an explicit pull request; nothing here updates a repository on its own.
+tag (`v0.3.0`) and update only through an explicit pull request; nothing here updates a repository on its own.
 
 This is a **Reusable Package & Tooling** repository. Consumers depend on tagged semantic versions — never point a downstream repository at a floating branch or untagged commit.
 
 ## Installation
 
-Consuming repositories pin the release tag (`v0.2.0`) across their pre-commit configuration, reusable CI workflows, and vendored `.lab-repo-kit/VERSION` stamp. For local development or direct CLI invocation:
+Consuming repositories pin the release tag (`v0.3.0`) across their pre-commit configuration, reusable CI workflows, and vendored `.lab-repo-kit/VERSION` stamp. For local development or direct CLI invocation:
 
 ```bash
 # Install a pinned release tag
-pip install "git+https://github.com/Tran-Memory-Lab/lab-repo-kit.git@v0.2.0"
+pip install "git+https://github.com/Tran-Memory-Lab/lab-repo-kit.git@v0.3.0"
 
 # Local editable install for development
 pip install -e . pytest
@@ -20,7 +20,7 @@ pip install -e . pytest
 
 ## Quick start & usage
 
-### Pinned consumption (`v0.2.0`)
+### Pinned consumption (`v0.3.0`)
 
 Keep these three pins equal across every consuming repository:
 
@@ -29,7 +29,7 @@ Keep these three pins equal across every consuming repository:
 ```yaml
 repos:
   - repo: https://github.com/Tran-Memory-Lab/lab-repo-kit
-    rev: v0.2.0
+    rev: v0.3.0
     hooks:
       - id: lab-raw-data-guard
 ```
@@ -44,14 +44,14 @@ name: lab-checks
 on: [pull_request, push]
 jobs:
   raw-data:
-    uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/raw-data-check.yml@v0.2.0
-    with: { kit-ref: v0.2.0 }
+    uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/raw-data-check.yml@v0.3.0
+    with: { kit-ref: v0.3.0 }
   kit-drift:
-    uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/kit-drift.yml@v0.2.0
-    with: { kit-ref: v0.2.0 }
+    uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/kit-drift.yml@v0.3.0
+    with: { kit-ref: v0.3.0 }
 ```
 
-**3. Vendored policy** — copy `policy/*.md` into `.lab-repo-kit/` and write `0.2.0` to
+**3. Vendored policy** — copy `policy/*.md` into `.lab-repo-kit/` and write `0.3.0` to
 `.lab-repo-kit/VERSION`. Reference `.lab-repo-kit/lab-policy.md` from the repository's
 `AGENTS.md`; do not edit the vendored copy.
 
@@ -98,13 +98,13 @@ cannot block a merge. These are guardrails; reviewers still have to look.
 
 | Path | Role |
 |---|---|
-| `src/lab_repo_kit/` | Package source (`raw_data_guard.py`, `check_vendored.py`) |
+| `src/lab_repo_kit/` | Package source (`raw_data_guard.py`, `check_vendored.py`, `init_repo.py`, `check_taxonomy.py`) |
 | `policy/` | Vendored agent-policy fragments (`policy/lab-policy.md`) |
-| `.github/workflows/` | Package CI (`ci.yml`) and reusable workflows (`raw-data-check.yml`, `kit-drift.yml`) |
+| `.github/workflows/` | Package CI (`ci.yml`), reusable workflows (`raw-data-check.yml`, `kit-drift.yml`, `python-syntax-check.yml`), and the scheduled `taxonomy-audit.yml` |
 | `.pre-commit-hooks.yaml` | Pre-commit hook definition (`lab-raw-data-guard`) |
 | `tests/` | Unit and contract test suite (`fixtures/synthetic/` contains synthetic-only test data) |
 | `pyproject.toml` | Package metadata, console script entry points, and Ruff configuration |
-| `VERSION` | Canonical version string (`0.2.0`) |
+| `VERSION` | Canonical version string (`0.3.0`) |
 | `CHANGELOG.md` | Release history and semantic-versioning notes |
 
 ## Development, tests & release policy
