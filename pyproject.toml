@@ -1,6 +1,6 @@
 [project]
 name = "lab-repo-kit"
-version = "0.2.0"
+version = "0.3.0"
 description = "Tran Memory Lab shared validators, raw-data hook, and agent-policy fragments"
 requires-python = ">=3.10"
 

@@ -1,5 +1,5 @@
 # Reusable workflow. Verifies Python source files compile cleanly without fatal syntax errors.
-#   uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/python-syntax-check.yml@main
+#   uses: Tran-Memory-Lab/lab-repo-kit/.github/workflows/python-syntax-check.yml@v0.3.0
 name: python-syntax-check
 
 on:

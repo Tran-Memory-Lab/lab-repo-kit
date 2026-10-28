@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.3.0 — 2026-10-27
+
+- New `lab-init-repo`: creates a Tran-Memory-Lab repository with its taxonomy custom properties
+  and topics set.
+- New `lab-check-taxonomy`: audits every organization repository for custom-property and topic
+  compliance. `taxonomy-audit.yml` runs it weekly (Mondays 12:00 UTC), on demand, and as a
+  reusable workflow with an optional `kit-ref` input (default `main`, for the kit's own schedule).
+  Its token comes from `ORG_TAXONOMY_TOKEN`, then `GH_PAT`, then `GITHUB_TOKEN`.
+- New reusable workflow `python-syntax-check.yml` (`workflow_call`, inputs `python-version` and
+  `paths`): byte-compiles the tree and runs `ruff check --select E9,F63,F7,F82`. Call it at a tag;
+  its usage comment pointed at `@main` before this release.
+- No change to `lab-raw-data-guard`, `lab-check-vendored`, or `policy/lab-policy.md`. Consumers
+  bump their pins and `.lab-repo-kit/VERSION` together, as before.
+
 ## v0.2.0 — 2026-10-18
 
 - Fix: a tracked file named `--help`, `-h`, or an argparse abbreviation such as `--he` made
